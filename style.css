@@ -58,7 +58,6 @@ button:focus {
   height: 100vh;
   width: 100%;
   min-width: 320px;
-  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -99,14 +98,14 @@ button:focus {
 }
 
 #game-board {
-  margin-top: 8rem;
-  width: 50vw;
-  height: 50vw;
+  margin-top: 5rem;
+  width: min(50vw, 50vh);
+  height: min(50vw, 50vh);
   transform: rotate(45deg);
 }
 #game-board .game-cell {
-  width: 25vw;
-  height: 25vw;
+  width: min(50vw, 50vh)/2;
+  height: min(50vw, 50vh)/2;
   opacity: 1;
   cursor: pointer;
   /* replace with jQuery animation
@@ -125,7 +124,7 @@ button:focus {
     */
 }
 #game-board .game-cell::after, #game-board .game-cell::before {
-  font-size: 5rem;
+  font-size: 3rem;
   display: block;
   color: white;
   position: absolute;
@@ -183,8 +182,8 @@ button:focus {
 #game-board .game-cell .overlay,
 #game-board .game-cell .error {
   display: none;
-  width: 25vw;
-  height: 25vw;
+  width: min(50vw, 50vh)/2;
+  height: min(50vw, 50vh)/2;
   position: absolute;
   top: 0;
   left: 0;
@@ -207,20 +206,20 @@ button:focus {
 }
 @media (min-width: 800px) {
   #game-board {
-    width: 26vw;
-    height: 26vw;
+    width: min(26vw, 26vh);
+    height: min(26vw, 26vh);
   }
   #game-board .game-cell {
-    width: 13vw;
-    height: 13vw;
+    width: min(26vw, 26vh)/2;
+    height: min(26vw, 26vh)/2;
   }
   #game-board .game-cell::after, #game-board .game-cell::before {
-    font-size: 4rem;
+    font-size: 3rem;
   }
   #game-board .game-cell .overlay,
   #game-board .game-cell .error {
-    width: 13vw;
-    height: 13vw;
+    width: min(26vw, 26vh)/2;
+    height: min(26vw, 26vh)/2;
   }
 }
 

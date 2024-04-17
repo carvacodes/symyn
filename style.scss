@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @mixin drop_shadow() {
   border-radius: 0 0 10px 0;
   border: none;
@@ -68,7 +70,6 @@ button {
   height: 100vh;
   width: 100%;
   min-width: 320px;
-  max-width: 600px;
   margin: 0 auto;
 }
 .title {
@@ -103,10 +104,9 @@ button {
   align-items: center;
 }
 #game-board {
-  $boardSize: 50vw;
+  $boardSize: min(50vw, 50vh);
   $cellSize: $boardSize / 2;
-
-  margin-top: 8rem;
+  margin-top: 5rem;
   width: $boardSize;
   height: $boardSize;
   transform: rotate(45deg);
@@ -131,7 +131,7 @@ button {
       */
     &::after,
     &::before {
-      font-size: 5rem;
+      font-size: 3rem;
       display: block;
       color: white;
       position: absolute;
@@ -232,7 +232,7 @@ button {
 }
 
 @media (min-width: 800px) {
-  $boardSize: 26vw;
+  $boardSize: min(26vw, 26vh);
   $cellSize: $boardSize / 2;
 
   #game-board {
@@ -243,7 +243,7 @@ button {
       height: $cellSize;
       &::after,
       &::before {
-        font-size: 4rem;
+        font-size: 3rem;
       }
       .overlay,
       .error {
