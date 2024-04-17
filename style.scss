@@ -105,7 +105,7 @@ button {
 }
 #game-board {
   $boardSize: min(50vw, 50vh);
-  $cellSize: $boardSize / 2;
+  $cellSize: min(25vw, 25vh);
   margin-top: 5rem;
   width: $boardSize;
   height: $boardSize;
@@ -233,7 +233,7 @@ button {
 
 @media (min-width: 800px) {
   $boardSize: min(26vw, 26vh);
-  $cellSize: $boardSize / 2;
+  $cellSize: min(13vw, 13vh);
 
   #game-board {
     width: $boardSize;
