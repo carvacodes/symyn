@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Symyn</title>
+        <link rel="stylesheet" href="./style.css">
+        <link href="https://fonts.googleapis.com/css?family=Megrim|Poiret+One" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="title-overlay">
+        <button id="play">Play</button>
+        </div>
+        <div id="container" class="container" style="display:none">
+            <h1 class="title">S<span class="y-class">y</span>M<span class="y-class">y</span>N</h1>
+            <p id="level">level: <span>1</span></p>
+            <div class="controls">
+                <button id="begin"><span>begin</span></button>
+                <button id="difficulty"><span>lenient</span></button>
+            </div>
+            <table id="game-board">
+                <tr>
+                <td class="game-cell" data-cell-num=0 id="top">
+                    <div class="overlay"></div>
+                    <div class="error"></div>
+                </td>
+                <td class="game-cell" data-cell-num=1 id="left">
+                    <div class="overlay"></div>
+                    <div class="error"></div>
+                </td>
+                </tr>
+                <tr>
+                <td class="game-cell" data-cell-num=2 id="right">
+                    <div class="overlay"></div>
+                    <div class="error"></div>
+                </td>
+                <td class="game-cell" data-cell-num=3 id="bottom">
+                    <div class="overlay"></div>
+                    <div class="error"></div>
+                </td>
+                </tr>
+            </table>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>

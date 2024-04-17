@@ -1,0 +1,255 @@
+@mixin drop_shadow() {
+  border-radius: 0 0 10px 0;
+  border: none;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+$body-bg: linear-gradient(to bottom right, #eee, #666);
+* {
+  box-sizing: border-box;
+  position: relative;
+}
+
+body {
+  text-align: center;
+  color: #555;
+  font-size: 5rem;
+  font-family: "Poiret One", sans-serif;
+  min-height: 100%;
+  overflow: hidden;
+  background: $body-bg;
+}
+span {
+  height: 26px;
+}
+button {
+  @include drop_shadow();
+  cursor: pointer;
+  margin: 0.5rem auto;
+  min-width: 40vw;
+  max-width: 50vw;
+  overflow: hidden;
+  padding: 5px;
+  font-family: "Poiret One", sans-serif;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.33)
+  );
+  font-weight: bold;
+  font-size: 4rem;
+  &:hover {
+    background: linear-gradient(
+      to bottom right,
+      rgba(255, 255, 255, 0.33),
+      rgba(255, 255, 255, 0.66)
+    );
+  }
+  &:focus {
+    outline: none;
+  }
+}
+#title-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 50vw;
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 480px;
+  height: 100%;
+  height: 100vh;
+  width: 100%;
+  min-width: 320px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.title {
+  margin: 0 auto;
+  .y-class {
+    font-size: 1em;
+    height: unset;
+    display: inline-block;
+    color: #fafafa;
+    bottom: 0.21em;
+    &:last-of-type {
+      transform-origin: 50% 70%;
+      transform: rotate(180deg);
+    }
+  }
+}
+#level {
+  overflow: hidden;
+  @include drop_shadow();
+  padding: 5px;
+  margin: 1rem;
+  span {
+    display: inline-block;
+    width: 3rem;
+  }
+}
+.controls {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#game-board {
+  $boardSize: 50vw;
+  $cellSize: $boardSize / 2;
+
+  margin-top: 8rem;
+  width: $boardSize;
+  height: $boardSize;
+  transform: rotate(45deg);
+  .game-cell {
+    width: $cellSize;
+    height: $cellSize;
+    opacity: 1;
+    cursor: pointer;
+    /* replace with jQuery animation
+      &.active::after {
+        display: block;
+        content: ' ';
+        background-color: rgba(255,255,255,0.5);
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+        animation: 0.95s fade ease-out 0s forwards;
+      }
+      */
+    &::after,
+    &::before {
+      font-size: 5rem;
+      display: block;
+      color: white;
+      position: absolute;
+      bottom: 1px;
+      left: 2px;
+      right: unset;
+    }
+    &::before {
+      left: unset;
+      right: 2px;
+    }
+    &#top {
+      background-color: red;
+      background: linear-gradient(
+        to bottom right,
+        darken(red, 15%),
+        lighten(red, 15%)
+      );
+      &::after {
+        content: "w";
+      }
+      &::before {
+        content: "8";
+      }
+    }
+    &#left {
+      background-color: yellow;
+      background: linear-gradient(
+        to bottom right,
+        darken(yellow, 15%),
+        lighten(yellow, 15%)
+      );
+      &::after,
+      &::before {
+        color: black;
+      }
+      &::after {
+        content: "d";
+      }
+      &::before {
+        content: "6";
+      }
+    }
+    &#right {
+      background-color: blue;
+      background: linear-gradient(
+        to bottom right,
+        darken(blue, 15%),
+        lighten(blue, 15%)
+      );
+      &::after {
+        content: "a";
+      }
+      &::before {
+        content: "4";
+      }
+    }
+    &#bottom {
+      background-color: green;
+      background: linear-gradient(
+        to bottom right,
+        darken(green, 15%),
+        lighten(green, 15%)
+      );
+      &::after {
+        content: "s";
+      }
+      &::before {
+        content: "2";
+      }
+    }
+    .overlay,
+    .error {
+      display: none;
+      width: $cellSize;
+      height: $cellSize;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: white;
+      opacity: 1;
+      z-index: 100;
+    }
+    .error {
+      background-color: black;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    display: none;
+  }
+}
+
+@media (min-width: 800px) {
+  $boardSize: 26vw;
+  $cellSize: $boardSize / 2;
+
+  #game-board {
+    width: $boardSize;
+    height: $boardSize;
+    .game-cell {
+      width: $cellSize;
+      height: $cellSize;
+      &::after,
+      &::before {
+        font-size: 4rem;
+      }
+      .overlay,
+      .error {
+        width: $cellSize;
+        height: $cellSize;
+      }
+    }
+  }
+}
