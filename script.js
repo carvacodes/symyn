@@ -33,19 +33,15 @@ $(document).ready(function(){
   }
 
   // added a title overlay, since AudioContext is not allowed to trigger without user input on certain mobile devices
-  $(els.titleOverlay).css('width', innerWidth + 'px');
-  $(els.titleOverlay).css('height', innerHeight + 'px');
-  $(els.titleOverlay).css('z-index', 100);
   $(els.playButton).click(()=>{
-    $(els.titleOverlay).fadeOut(500);
-    globalAudioContext.resume();
-    gameControl.titleTimeout = window.setTimeout(()=>{
-      titleJingle();
-    }, 500)
-    $(els.gameContainer).fadeIn(500);
-  });
-
-  
+    $(els.titleOverlay).fadeOut(500, () => {
+      globalAudioContext.resume();
+      gameControl.titleTimeout = window.setTimeout(()=>{
+        titleJingle();
+      }, 500)
+      $(els.gameContainer).fadeIn(500);
+    });
+  });  
   
     /////////////////////////////////////////////
    //                  Sound                  //
@@ -86,7 +82,7 @@ $(document).ready(function(){
 
   Chime.prototype.play = function() {
     window.clearInterval(this.intervalId);     // clear any existing setInterval currently running
-    this.gainNode.gain.value = 0.5;           // reset the gainNode gain value
+    this.gainNode.gain.value = 0.5;            // reset the gainNode gain value
     this.osc.connect(this.gainNode);           // connect this chime object's oscillator to the gainNode
     this.intervalId = window.setInterval(()=>{
       if (this.gainNode.gain.value > 0) {      // while the sound is still audible (gain > 0)

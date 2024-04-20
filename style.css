@@ -6,15 +6,20 @@
 body {
   text-align: center;
   color: #555;
-  font-size: 5rem;
   font-family: "Poiret One", sans-serif;
-  min-height: 100%;
   overflow: hidden;
   background: linear-gradient(to bottom right, #eee, #666);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-span {
-  height: 26px;
+body,
+button {
+  font-size: 2rem;
 }
 
 button {
@@ -30,7 +35,6 @@ button {
   font-family: "Poiret One", sans-serif;
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.33));
   font-weight: bold;
-  font-size: 4rem;
 }
 button:hover {
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.33), rgba(255, 255, 255, 0.66));
@@ -53,20 +57,16 @@ button:focus {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 480px;
-  height: 100%;
-  height: 100vh;
-  width: 100%;
-  min-width: 320px;
   margin: 0 auto;
+  padding: 5rem 0 10rem 0;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
   margin: 0 auto;
 }
 .title .y-class {
-  font-size: 1em;
-  height: unset;
   display: inline-block;
   color: #fafafa;
   bottom: 0.21em;
@@ -82,7 +82,7 @@ button:focus {
   border: none;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
   padding: 5px;
-  margin: 1rem;
+  margin: 0 auto;
 }
 #level span {
   display: inline-block;
@@ -91,46 +91,42 @@ button:focus {
 
 .controls {
   width: 100%;
-  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 
 #game-board {
-  margin-top: 5rem;
-  width: min(50vw, 50vh);
-  height: min(50vw, 50vh);
   transform: rotate(45deg);
+  margin-top: 5rem;
+  width: min(40vw, 40vh);
+  height: min(40vw, 40vh);
+  min-width: min(40vw, 40vh);
+  min-height: min(40vw, 40vh);
+  max-width: min(40vw, 40vh);
+  max-height: min(40vw, 40vh);
+}
+#game-board .row {
+  width: 100%;
+  height: 50%;
+  display: flex;
 }
 #game-board .game-cell {
-  width: min(25vw, 25vh);
-  height: min(25vw, 25vh);
+  width: 50%;
+  height: 100%;
   opacity: 1;
+  display: block;
   cursor: pointer;
-  /* replace with jQuery animation
-    &.active::after {
-      display: block;
-      content: ' ';
-      background-color: rgba(255,255,255,0.5);
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      animation: 0.95s fade ease-out 0s forwards;
-    }
-    */
 }
 #game-board .game-cell::after, #game-board .game-cell::before {
-  font-size: 3rem;
   display: block;
   color: white;
   position: absolute;
   bottom: 1px;
   left: 2px;
   right: unset;
+  text-shadow: 0px 0px 4px rgb(0, 0, 0), 0px 0px 4px rgb(0, 0, 0);
 }
 #game-board .game-cell::before {
   left: unset;
@@ -149,9 +145,6 @@ button:focus {
 #game-board .game-cell#left {
   background-color: yellow;
   background: linear-gradient(to bottom right, #b3b300, #ffff4d);
-}
-#game-board .game-cell#left::after, #game-board .game-cell#left::before {
-  color: black;
 }
 #game-board .game-cell#left::after {
   content: "d";
@@ -182,8 +175,8 @@ button:focus {
 #game-board .game-cell .overlay,
 #game-board .game-cell .error {
   display: none;
-  width: min(25vw, 25vh);
-  height: min(25vw, 25vh);
+  width: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -204,22 +197,19 @@ button:focus {
     display: none;
   }
 }
-@media (min-width: 800px) {
+@media (max-height: 600px) {
   #game-board {
-    width: min(26vw, 26vh);
-    height: min(26vw, 26vh);
+    margin-top: 3rem;
   }
-  #game-board .game-cell {
-    width: min(13vw, 13vh);
-    height: min(13vw, 13vh);
-  }
-  #game-board .game-cell::after, #game-board .game-cell::before {
-    font-size: 3rem;
-  }
-  #game-board .game-cell .overlay,
-  #game-board .game-cell .error {
-    width: min(13vw, 13vh);
-    height: min(13vw, 13vh);
+}
+@media (max-width: 520px) {
+  #game-board {
+    width: min(60vw, 60vh);
+    height: min(60vw, 60vh);
+    min-width: min(60vw, 60vh);
+    min-height: min(60vw, 60vh);
+    max-width: min(60vw, 60vh);
+    max-height: min(60vw, 60vh);
   }
 }
 
